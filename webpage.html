@@ -1,5 +1,372 @@
 <!doctype html>
-<meta charset=""utf-8>
-<title>自己紹介</title>
-<h1>自己紹介</h1>
-<p>授業で作成したページです</p>
+<!-- 日本語で書かれたウェブページ -->
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <!-- ウェブサイトの倍率、幅をデバイスに合わせて表示 --> --> --> -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>自己紹介</title>
+    <style>
+        :root{
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --primary-color: #4a6fa5;
+            --secondary-color: #166088;
+            --card-bg: #ffffff;
+            --border-color: #e9ecef;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        /* ダークモード */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #e0e0e0;
+                --primary-color: #6c8ebf;
+                --secondary-color: #4a7bb0;
+                --card-bg: #1e1e1e;
+                --border-color: #2d2d2d;
+                --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            }
+        }* {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        main {
+            max-width: 800px;
+            margin: 80px auto 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            padding: 60px 0 20px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .avatar-placeholder {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .work-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+
+        .work-thumbnail {
+            height: 140px;
+            background: linear-gradient(45deg, #4f5d75, #2d3142);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .work-card:nth-child(2) .work-thumbnail {
+            background: linear-gradient(45deg, #5c677d, #7d8cc4);
+        }
+
+        .work-content {
+            padding: 20px;
+        }
+
+        .work-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .work-tags {
+            display: flex;
+            gap: 5px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            background-color: var(--border-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .reflection-content {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+
+        .reflection-content p {
+            margin-bottom: 15px;
+        }
+
+        .reflection-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .interactive-element {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        #message-area {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            min-height: 25px;
+            font-style: italic;
+            color: var(--primary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.8rem;
+            color: gray;
+        }
+
+        @media (max-width: 600px) {
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                gap: 12px;
+            }
+            
+            nav a {
+                font-size: 0.85rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Portfolio</a>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#works">Works</a></li>
+                    <li><a href="#reflection">Reflection</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>About</h2>
+            <div class="profile-container">
+                <div class="avatar-placeholder">M</div>
+                <div class="profile-text">
+                    <p>
+                        理工学部の学生です。プログラミング言語のようなソフトウェアから、回路などハードウェアまで広く学んできました。
+                        現在は機械学習に特に興味を持っており、PythonのPyTorchライブラリの習得を目指して学習中です。
+                        将来は、機械学習の知識を用いたモデルの開発、改良に関わる仕事や、組込システムなどハードウェア、ソフトウェアのどちらにも携わる仕事をしていきたいと考えております。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <p>取得した資格、触れてきた言語です。</p>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <strong>資格</strong>
+                    <p style="font-size: 0.85rem; color: gray; margin-top: 5px;">基本情報技術者試験(FE)</p>
+                </div>
+                <div class="skill-card">
+                    <strong>言語</strong>
+                    <p style="font-size: 0.85rem; color: gray; margin-top: 5px;">Python,C,C++,Java</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="works">
+            <h2>Works</h2>
+            <div class="works-grid">
+                <div class="work-card">
+                    <div class="work-content">
+                        <h3>PyTorchを用いた機械学習モデル</h3>
+                        <p>
+                            PythonのPyTorchライブラリを用いて、CNNモデルの作成と精度の向上を行いました。
+                            MNISTを利用した数字の推論モデルと、Tensorflowのrock_paper_scissorsデータセットを利用したグーチョキパーの推論モデルです。
+                        </p>
+                        <div class="work-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">PyTorch</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reflection">
+            <h2>Reflection</h2>
+            <div class="reflection-content">
+                <p><strong>これまでの振り返り</strong><br>
+                    1年次は、講義を通して論理回路や回路理論など回路の基礎知識や、機械語、アセンブリ言語について学びました。また、実験を通してオシロスコープやシンセサイザ、ファンクションジェネレータの使用方法や、回路の諸定理について実際に試しながら学びました。
+                    2年次は、講義を通して2分探索法やダイクストラ法などのアルゴリズムや、ネットワークの仕組みについて理解しました。実験では距離センサを用いて、ArduinoIDEとProcessingIDEを使ったAR距離計の実装をしました。また、VSCodeでPythonのOpenCVライブラリを用いた2値化や差分処理などの画像処理を実装しました。
+                    3年次になってからは、講義や実験をしながら応用情報技術者試験(AP)の勉強をしています。
+                </p>
+                <p><strong>今後の展望</strong><br>現在は、機械学習について重点的に学んでいます。既存の物をよりよくしていくこと、どうしたらよりよくなるのか考えながら手を動かすことが特に楽しいです。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Portfolio. Built with standard HTML, CSS, and JavaScript.</p>
+    </footer>
+</body>
+</html>
